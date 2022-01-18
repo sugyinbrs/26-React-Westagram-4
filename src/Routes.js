@@ -15,6 +15,7 @@ import MainYs from './Pages/yusin/Main/Main';
 
 import LoginSg from './Pages/sugyeong/Login/Login';
 import MainSg from './Pages/sugyeong/Main/Main';
+import SignUpSg from './Pages/sugyeong/SignUp/SignUp';
 
 class Routes extends React.Component {
   render() {
@@ -31,6 +32,7 @@ class Routes extends React.Component {
           <Route exact path="/MainYs" component={MainYs} />
           <Route exact path="/LoginSg" component={LoginSg} />
           <Route exact path="/MainSg" component={MainSg} />
+          <Route exact path="/SignUpSg" component={SignUpSg} />
         </Switch>
       </Router>
     );

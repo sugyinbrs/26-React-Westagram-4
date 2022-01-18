@@ -1,8 +1,33 @@
 import React from 'react';
+import Comment from './Comment';
 import './Main.scss';
 
 class MainSg extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      commentInput: '',
+      comments: [],
+    };
+  }
+
+  updateCommentInput = e => {
+    this.setState({
+      commentInput: e.target.value,
+    });
+  };
+
+  addComment = e => {
+    e.preventDefault();
+    this.setState({
+      comments: [...this.state.comments, this.state.commentInput],
+      commentInput: '',
+    });
+  };
+
   render() {
+    const { commentInput, comments } = this.state;
+    const isActivePostButton = commentInput.length > 0;
     return (
       <>
         <nav id="nav__outer">
@@ -113,13 +138,21 @@ class MainSg extends React.Component {
                       </span>
                     </p>
                   </div>
-                  <ul className="text__commentlists" />
+                  <ul className="text__commentlists">
+                    {comments.map(comment => {
+                      return <Comment commentText={comment} />;
+                    })}
+                  </ul>
                 </div>
                 <div className="article__time">
                   <p className="article__posttime">51 MINUTES AGO</p>
                 </div>
                 <div className="article__addcomments">
-                  <form action="#" className="addcomments__wrapper">
+                  <form
+                    action="#"
+                    className="addcomments__wrapper"
+                    onSubmit={this.submitComment}
+                  >
                     <button className="comment__emojis">
                       <img
                         src="images/sugyeong/smile.png"
@@ -131,8 +164,15 @@ class MainSg extends React.Component {
                       type="text"
                       placeholder="Add a comment..."
                       className="comment__input"
+                      onChange={this.updateCommentInput}
+                      value={commentInput}
                     />
-                    <button className="comment__post__btn" disabled>
+                    <button
+                      className="comment__post__btn"
+                      disabled={!isActivePostButton}
+                      onClick={this.addComment}
+                      type="button"
+                    >
                       Post
                     </button>
                   </form>
@@ -339,3 +379,17 @@ class MainSg extends React.Component {
 }
 
 export default MainSg;
+
+// state -> 사용자가 입력한 Input 값을 담는다.
+// input 요소에 keyUp 이벤트를 통해 사용자가 입력한 input 값을 관리.
+// Input 값이 0 이상일 때, '게시' 버튼 활성화. (변수로 할당 해주기)
+
+// 백틱이랑 js 같이 써줄 수 있음 className={`button ${isActiveButton ? "activeButton" : "inActiveButton"}`}
+
+// 버튼을 클릭 했을 때 => buttton 요소에 onClick 이벤트 이용
+// 입력한 input의 값이 댓글로 새롭게 추가됨
+
+// 입력한 input의 값 => this.state.commentInput
+
+// '사용자가 게시버튼을 누른 댓글들' => state.
+// 버튼을 누를 때, state comments 추가한다.

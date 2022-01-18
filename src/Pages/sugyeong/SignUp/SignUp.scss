@@ -18,14 +18,14 @@ body {
   cursor: default;
 }
 
-.loginSg {
+.login {
   width: 350px;
   height: 400px;
   margin: 130px auto;
   border: 1px solid lightgray;
   background-color: white;
 
-  .loginLogo {
+  .login__logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ body {
     color: #313131;
   }
 
-  .loginForm {
+  .login__form {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -47,7 +47,7 @@ body {
       height: 100%;
     }
 
-    #loginId {
+    #login__id {
       width: 260px;
       height: 25px;
       padding: 9px;
@@ -67,7 +67,7 @@ body {
       }
     }
 
-    #loginPw {
+    #login__pw {
       width: 260px;
       height: 25px;
       padding: 9px;
@@ -110,7 +110,7 @@ body {
     }
   }
 
-  .passwordReset {
+  .password__reset {
     display: flex;
     justify-content: center;
     align-items: flex-end;
